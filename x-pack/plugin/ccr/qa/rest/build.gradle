@@ -4,6 +4,12 @@ apply plugin: 'elasticsearch.testclusters'
 apply plugin: 'elasticsearch.standalone-test'
 apply plugin: 'elasticsearch.rest-resources'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 restResources {
   restApi {
     includeCore '_common', 'cluster', 'nodes', 'indices', 'index', 'info'

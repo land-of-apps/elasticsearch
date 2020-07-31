@@ -1,7 +1,11 @@
 dependencies {
   testImplementation project(':x-pack:plugin:core')
 }
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 Project mainProject = project
 
 configurations.create('testArtifacts')

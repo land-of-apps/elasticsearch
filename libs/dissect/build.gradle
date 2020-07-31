@@ -26,6 +26,12 @@ dependencies {
   testImplementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 tasks.named('forbiddenApisMain').configure {
   replaceSignatureFiles 'jdk-signatures'
 }

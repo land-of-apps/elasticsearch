@@ -1,6 +1,10 @@
 description = 'Integration tests for SQL'
 apply plugin: 'elasticsearch.build'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 // the main files are actually test files, so use the appropriate forbidden api sigs
 tasks.named('forbiddenApisMain').configure {
   replaceSignatureFiles 'es-all-signatures', 'es-test-signatures'

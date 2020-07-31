@@ -8,7 +8,11 @@ esplugin {
   extendedPlugins = ['x-pack-core']
 }
 archivesBaseName = 'x-pack-rollup'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 dependencies {
   compileOnly project(":server")
 

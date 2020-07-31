@@ -5,6 +5,12 @@ gradle.projectsEvaluated {
     if (assemble) {
       assemble.enabled = false
     }
+
+    test {
+      systemProperty 'appmap.debug', true
+      systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+      jvmArgs "-javaagent:$rootDir/appmap.jar"
+    }
   }
 }
 

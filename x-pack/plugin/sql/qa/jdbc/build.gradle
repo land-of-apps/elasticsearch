@@ -6,7 +6,11 @@ import org.elasticsearch.gradle.test.RestIntegTestTask
 
 description = 'Integration tests for SQL JDBC driver'
 apply plugin: 'elasticsearch.java'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 // Avoid circular dependency
 group = 'org.elasticsearch.x-pack.qa.sql.jdbc'
 

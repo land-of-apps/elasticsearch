@@ -31,4 +31,10 @@ subprojects {
 
   // TODO: why is the test framework pulled in...
   jarHell.enabled = false
+
+  test {
+    systemProperty 'appmap.debug', true
+    systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+    jvmArgs "-javaagent:$rootDir/appmap.jar"
+  }
 }

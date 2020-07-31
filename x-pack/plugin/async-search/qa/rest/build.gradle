@@ -9,6 +9,12 @@ esplugin {
   classname 'org.elasticsearch.query.DeprecatedQueryPlugin'
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 restResources {
   restApi {
     includeCore '_common', 'indices', 'index'

@@ -26,6 +26,12 @@ apply plugin: 'elasticsearch.standalone-test'
 apply from : "$rootDir/gradle/bwc-test.gradle"
 apply plugin: 'elasticsearch.rest-resources'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 for (Version bwcVersion : BuildParams.bwcVersions.wireCompatible) {
   /*
    * The goal here is to:

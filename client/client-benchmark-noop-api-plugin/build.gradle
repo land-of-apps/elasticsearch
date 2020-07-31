@@ -21,6 +21,12 @@ group = 'org.elasticsearch.plugin'
 
 apply plugin: 'elasticsearch.esplugin'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   name 'client-benchmark-noop-api'
   description 'Stubbed out Elasticsearch actions that can be used for client-side benchmarking'

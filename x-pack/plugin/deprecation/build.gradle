@@ -9,6 +9,12 @@ esplugin {
 }
 archivesBaseName = 'x-pack-deprecation'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 dependencies {
   compileOnly project(":x-pack:plugin:core")
 }

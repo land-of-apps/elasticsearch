@@ -19,6 +19,12 @@
 apply plugin: 'elasticsearch.yaml-rest-test'
 apply plugin: 'elasticsearch.internal-cluster-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The Mapper Size plugin allows document to record their uncompressed size at index time.'
   classname 'org.elasticsearch.plugin.mapper.MapperSizePlugin'

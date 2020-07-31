@@ -4,3 +4,9 @@ jar {
     attributes 'Main-Class': 'org.elasticsearch.gradle.reaper.Reaper'
   }
 }
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

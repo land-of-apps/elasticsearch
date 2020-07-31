@@ -2,7 +2,11 @@ import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApis
 import org.elasticsearch.gradle.info.BuildParams
 
 apply plugin: 'elasticsearch.build'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 archivesBaseName = 'elasticsearch-security-cli'
 
 dependencies {

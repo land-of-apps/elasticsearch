@@ -7,7 +7,11 @@ esplugin {
   classname 'org.elasticsearch.xpack.ql.plugin.QlPlugin'
   extendedPlugins = ['x-pack-core']
 }
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 archivesBaseName = 'x-pack-ql'
 
 dependencies {

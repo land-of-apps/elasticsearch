@@ -9,3 +9,9 @@ dependencies {
   // TOML parser for EqlActionIT tests
   api 'io.ous:jtoml:2.0.0'
 }
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

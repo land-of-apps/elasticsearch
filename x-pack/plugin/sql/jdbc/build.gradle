@@ -1,7 +1,11 @@
 apply plugin: 'elasticsearch.build'
 apply plugin: 'elasticsearch.publish'
 apply plugin: 'com.github.johnrengelman.shadow'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 description = 'JDBC driver for Elasticsearch'
 archivesBaseName = "x-pack-sql-jdbc"
 

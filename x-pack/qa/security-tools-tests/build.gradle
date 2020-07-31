@@ -1,5 +1,9 @@
 apply plugin: 'elasticsearch.standalone-test'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 dependencies {
   testImplementation project(xpackModule('security'))
   testImplementation project(path: xpackModule('security'), configuration: 'testArtifacts')

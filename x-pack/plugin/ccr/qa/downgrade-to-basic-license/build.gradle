@@ -10,6 +10,12 @@ dependencies {
   testImplementation project(':x-pack:plugin:ccr:qa')
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 task "leader-cluster"(type: RestIntegTestTask) {
   mustRunAfter(precommit)
   runner {

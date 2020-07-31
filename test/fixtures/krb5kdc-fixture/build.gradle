@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.test.fixtures'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 // installKDC uses tabs in it for the Kerberos ACL file.
 // Ignore it for pattern checking.
 forbiddenPatterns {

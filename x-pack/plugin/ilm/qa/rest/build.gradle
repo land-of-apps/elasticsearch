@@ -8,7 +8,11 @@ dependencies {
   testImplementation project(path: xpackModule('core'), configuration: 'testArtifacts')
   testImplementation project(path: xpackModule('ilm'))
 }
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 restResources {
   restApi {
     includeCore '_common', 'cluster', 'indices', 'index', 'snapshot'

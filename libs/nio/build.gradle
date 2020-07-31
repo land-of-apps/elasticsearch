@@ -30,6 +30,12 @@ dependencies {
   }
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 
 tasks.named('forbiddenApisMain').configure {
   // nio does not depend on core, so only jdk signatures should be checked
