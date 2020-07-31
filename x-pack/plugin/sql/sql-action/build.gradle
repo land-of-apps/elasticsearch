@@ -2,7 +2,11 @@
  * This project contains transport-level requests and responses that are shared between x-pack plugin and qa tests
  */
 apply plugin: 'elasticsearch.build'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 description = 'Request and response objects shared by the cli, jdbc ' +
   'and the Elasticsearch plugin'
 

@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The Stempel (Polish) Analysis plugin integrates Lucene stempel (polish) analysis module into elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.stempel.AnalysisStempelPlugin'

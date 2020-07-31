@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The Japanese (kuromoji) Analysis plugin integrates Lucene kuromoji analysis module into elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.kuromoji.AnalysisKuromojiPlugin'

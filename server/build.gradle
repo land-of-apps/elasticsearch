@@ -22,6 +22,12 @@ apply plugin: 'nebula.optional-base'
 apply plugin: 'elasticsearch.publish'
 apply plugin: 'elasticsearch.internal-cluster-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 publishing {
   publications {
     nebula {

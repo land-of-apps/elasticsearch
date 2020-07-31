@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'Ingest processor that extracts information from a user agent'
   classname 'org.elasticsearch.ingest.useragent.IngestUserAgentPlugin'

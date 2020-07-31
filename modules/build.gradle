@@ -27,6 +27,12 @@ configure(subprojects.findAll { it.parent.path == project.path }) {
     name project.name
   }
 
+  test {
+    systemProperty 'appmap.debug', true
+    systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+    jvmArgs "-javaagent:$rootDir/appmap.jar"
+  }
+
   if (project.file('src/main/packaging').exists()) {
     throw new InvalidModelException("Modules cannot contain packaging files")
   }

@@ -23,6 +23,12 @@ esplugin {
   classname 'org.elasticsearch.search.aggregations.matrix.MatrixAggregationPlugin'
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 restResources {
   restApi {
     includeCore '_common', 'indices', 'cluster', 'index', 'search', 'nodes'

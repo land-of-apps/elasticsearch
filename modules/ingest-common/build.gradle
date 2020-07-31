@@ -19,6 +19,12 @@
 apply plugin: 'elasticsearch.yaml-rest-test'
 apply plugin: 'elasticsearch.internal-cluster-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'Module for ingest processors that do not require additional security permissions or have large dependencies and resources'
   classname 'org.elasticsearch.ingest.common.IngestCommonPlugin'

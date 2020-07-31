@@ -19,7 +19,11 @@ import org.elasticsearch.gradle.info.BuildParams
  * under the License.
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 esplugin {
   description 'Ingest processor that uses Apache Tika to extract contents'
   classname 'org.elasticsearch.ingest.attachment.IngestAttachmentPlugin'

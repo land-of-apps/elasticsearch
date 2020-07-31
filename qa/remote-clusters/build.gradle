@@ -77,6 +77,12 @@ dockerCompose {
   } else {
     useComposeFiles = ['docker-compose-oss.yml']
   }
+
+  test {
+    systemProperty 'appmap.debug', true
+    systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+    jvmArgs "-javaagent:$rootDir/appmap.jar"
+  }
 }
 
 def createAndSetWritable(Object... locations) {

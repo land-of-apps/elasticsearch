@@ -27,6 +27,12 @@ import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
 apply plugin: 'elasticsearch.yaml-rest-test'
 apply plugin: 'elasticsearch.internal-cluster-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The S3 repository plugin adds S3 repositories'
   classname 'org.elasticsearch.repositories.s3.S3RepositoryPlugin'

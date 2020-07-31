@@ -10,6 +10,12 @@ esplugin {
   requiresKeystore true
   extendedPlugins = ['x-pack-core']
 }
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 archivesBaseName = 'x-pack-ccr'
 
 integTest.enabled = false

@@ -21,6 +21,12 @@ import org.elasticsearch.gradle.info.BuildParams
 apply plugin: "elasticsearch.publish"
 apply plugin: 'elasticsearch.internal-cluster-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The nio transport.'
   classname 'org.elasticsearch.transport.nio.NioTransportPlugin'

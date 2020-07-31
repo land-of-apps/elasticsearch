@@ -17,7 +17,11 @@
  * under the License.
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 esplugin {
   description 'The Ukrainian Analysis plugin integrates the Lucene UkrainianMorfologikAnalyzer into elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.ukrainian.AnalysisUkrainianPlugin'

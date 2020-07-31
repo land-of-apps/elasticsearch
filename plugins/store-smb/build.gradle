@@ -18,7 +18,11 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 apply plugin: 'elasticsearch.internal-cluster-test'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 esplugin {
   description 'The Store SMB plugin adds support for SMB stores.'
   classname 'org.elasticsearch.plugin.store.smb.SMBStorePlugin'

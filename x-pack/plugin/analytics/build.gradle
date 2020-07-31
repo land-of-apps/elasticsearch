@@ -9,6 +9,12 @@ esplugin {
 }
 archivesBaseName = 'x-pack-analytics'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 compileJava.options.compilerArgs << "-Xlint:-rawtypes"
 compileTestJava.options.compilerArgs << "-Xlint:-rawtypes"
 

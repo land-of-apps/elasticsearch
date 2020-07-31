@@ -3,7 +3,11 @@
 
 apply plugin: 'elasticsearch.build'
 test.enabled = false
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 dependencies {
   api project(':test:framework')
 }

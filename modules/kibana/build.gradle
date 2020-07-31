@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.java-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'Plugin exposing APIs for Kibana system indices'
   classname 'org.elasticsearch.kibana.KibanaPlugin'

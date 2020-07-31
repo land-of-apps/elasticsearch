@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The Phonetic Analysis plugin integrates phonetic token filter analysis with elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.AnalysisPhoneticPlugin'

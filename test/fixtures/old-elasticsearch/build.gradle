@@ -24,6 +24,12 @@ a "ports" file with the port on which Elasticsearch is running.
 """
 
 apply plugin: 'elasticsearch.build'
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 test.enabled = false
 
 dependencies {

@@ -33,4 +33,9 @@ configure(subprojects.findAll { it.parent.path == project.path }) {
     licenseFile rootProject.file('licenses/APACHE-LICENSE-2.0.txt')
     noticeFile rootProject.file('NOTICE.txt')
   }
+  test {
+    systemProperty 'appmap.debug', true
+    systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+    jvmArgs "-javaagent:$rootDir/appmap.jar"
+  }
 }

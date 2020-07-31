@@ -18,6 +18,12 @@
  */
 apply plugin: 'elasticsearch.yaml-rest-test'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 esplugin {
   description 'The Korean (nori) Analysis plugin integrates Lucene nori analysis module into elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.nori.AnalysisNoriPlugin'

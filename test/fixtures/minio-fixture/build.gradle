@@ -19,6 +19,12 @@
 apply plugin: 'elasticsearch.build'
 apply plugin: 'elasticsearch.test.fixtures'
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 description = 'Fixture for MinIO Storage service'
 test.enabled = false
 

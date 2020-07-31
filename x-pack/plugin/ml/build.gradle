@@ -9,7 +9,11 @@ esplugin {
   hasNativeController true
   extendedPlugins = ['x-pack-core', 'lang-painless']
 }
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 
 repositories {
   ivy {

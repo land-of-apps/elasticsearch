@@ -54,6 +54,12 @@ processResources {
   from(generateVersionProperties)
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 /*****************************************************************************
  *         Java version                                                      *
  *****************************************************************************/

@@ -4,3 +4,9 @@ test.enabled = false
 dependencies {
   api project(':test:framework')
 }
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

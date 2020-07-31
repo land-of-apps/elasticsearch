@@ -2,7 +2,11 @@
  * This project contains XContent protocol classes shared between server and http client
  */
 apply plugin: 'elasticsearch.build'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 description = 'Request and response objects shared by the cli, jdbc ' +
   'and the Elasticsearch plugin'
 

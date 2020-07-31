@@ -2,3 +2,8 @@ apply plugin: 'elasticsearch.build'
 apply plugin: 'elasticsearch.test.fixtures'
 
 test.enabled = false
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

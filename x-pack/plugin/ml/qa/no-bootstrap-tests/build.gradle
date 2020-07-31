@@ -4,3 +4,8 @@ dependencies {
   testImplementation project(":x-pack:plugin:core")
   testImplementation project(path: xpackModule('ml'))
 }
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

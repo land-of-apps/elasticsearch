@@ -22,3 +22,9 @@ test.enabled = false
 // test depend on ES core...
 disableTasks('forbiddenApisMain')
 jarHell.enabled = false
+
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}

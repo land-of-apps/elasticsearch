@@ -23,5 +23,11 @@ dependencies {
   api "org.apache.hadoop:hadoop-minicluster:2.8.5"
 }
 
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
+
 test.enabled = false
 thirdPartyAudit.enabled = false

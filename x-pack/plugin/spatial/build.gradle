@@ -2,7 +2,11 @@ evaluationDependsOn(xpackModule('core'))
 
 apply plugin: 'elasticsearch.esplugin'
 apply plugin: 'elasticsearch.rest-resources'
-
+test {
+  systemProperty 'appmap.debug', true
+  systemProperty 'appmap.config.file', "$rootDir/appmap.yml"
+  jvmArgs "-javaagent:$rootDir/appmap.jar"
+}
 esplugin {
   name 'spatial'
   description 'A plugin for Basic Spatial features'
